@@ -1,6 +1,5 @@
 import serial
 import time
-import getopt
 import sys
 
 
@@ -40,7 +39,7 @@ class UartTerminal(object):
             else:
                 return 2
 
-    def read_module(self, numberModule):
+    def read_module(self, number_module):
         # self.ComPort.write('Log t\r\n')
         # print("Hello", self.index_print)
         self.index_print += 1
