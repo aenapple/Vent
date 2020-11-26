@@ -61,12 +61,12 @@ if __name__ == '__main__':
             if result_mb != 0:  # no connection with main board
                 break
 
-            time.sleep(1.0)
+            """time.sleep(1.0)
             result_module = uartTerminal.read_module(9)
             print(result_module)
             if result_module[0] == 0:
                 log_file = LogFile()
-                log_file.write_record(result_module[1])
+                log_file.write_record(result_module[1])"""
 
             time.sleep(1.0)
             result_module = uartTerminal.read_module(4)
@@ -89,11 +89,11 @@ if __name__ == '__main__':
                 log_file = LogFile()
                 log_file.write_record(result_module[1])
 
-            """time.sleep(1.0)
+            time.sleep(1.0)
             result_module = uartTerminal.read_module(11)
             print(result_module)
             if result_module[0] == 0:
                 log_file = LogFile()
-                log_file.write_record(result_module[1])"""
+                log_file.write_record(result_module[1])
 
             time.sleep(60.0)

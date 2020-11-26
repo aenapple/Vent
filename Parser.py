@@ -1,16 +1,56 @@
 import matplotlib.pyplot as plt
 
 
+def transform_data(file_name, t_array, s_array):
+    file_input = open(file_name, 'r')
+    for line in file_input:
+        x = line.find('11/25/2020')
+        if x != 0:
+            continue
+
+        str_record = line.replace('11/25/2020-23:', '')
+        # minutes = int(str_record[0:2])
+        # seconds = int(str_record[3:5])
+        s_array.append(int(str_record[3:5]) + (int(str_record[0:2]) * 60))
+        # t1 = int(str_record[13:17])
+        # t2 = int(str_record[18:22])
+        # t3 = int(str_record[23:27])
+        t = (int(str_record[13:17]) + int(str_record[18:22]) + int(str_record[23:27])) / 300
+        t_array.append(t)
+        print(str_record, end='')
+
+    file_input.close()
+
+
 if __name__ == '__main__':
     __doc__ = """
     ....
     """
+
+    # file_input = open('LogTemperature_4.txt', 'r')
+    # str_record = file_input.readline()
+
+    t1 = []
+    t2 = []
+    # t3 = []
+    s1 = []
+    s2 = []
+    # s3 = []
+    transform_data('LogTemperature_4.txt', t1, s1)  # room-sensor
+    transform_data('LogTemperature_C.txt', t2, s2)  # vent-sensor
+    # transform_data('LogTemperature_6.txt', t1, s1)  # room-sensor
+    # transform_data('LogTemperature_9.txt', t2, s2)  # vent-sensor
+    # transform_data('LogTemperature_B.txt', t3, s3)  # vent-sensor
+
     fig, ax = plt.subplots()
-    ax.plot([1, 2, 3, 4], [1, 4, 2, 3], label="X")
-    ax.plot([1, 3, 3, 4], [1, 3, 2, 4], label="Y")
-    ax.set_xlim(0, 5)
-    ax.set_ylim(0, 10)
-    ax.set(xlabel='time', ylabel='temperature', title='Bedroom')
+    ax.plot(s1, t1, label="room-sensor")
+    ax.plot(s2, t2, label="vent1-sensor")
+    # ax.plot(s3, t3, label="vent2-sensor")
+
+    # ax.set_xlim(0, 5)
+    # ax.set_ylim(0, 10)
+    # ax.set(xlabel='time', ylabel='temperature', title='Bedroom')
+    ax.set(xlabel='time', ylabel='temperature', title='Cabinet')
     ax.grid()
 
     # fig, ax = plt.subplots(2, 1)

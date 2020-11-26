@@ -12,7 +12,7 @@ class UartTerminal(object):
         # com_port = 'COM3'
         # baud_rate = 115200
         try:
-            self.ComPort = serial.Serial(com_port, baud_rate, timeout=0.1)
+            self.ComPort = serial.Serial(com_port, baud_rate, timeout=0.5)
         except serial.SerialException:
             print("Serial Exception:")
             print(sys.exc_info())
