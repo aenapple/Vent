@@ -1,48 +1,8 @@
-import serial
 import time
 import sys
+from LogFile import LogFile
+from UartTerminal import UartTerminal
 
-
-class UartTerminal(object):
-    def __init__(self):
-        self.index_print = 0
-        self.ComPort = None
-
-    def open(self):
-        com_port = 'COM3'
-        baud_rate = 115200
-        try:
-            self.ComPort = serial.Serial(com_port, baud_rate, timeout=0.1)
-        except serial.SerialException:
-            print("Serial Exception:")
-            print(sys.exc_info())
-            return 1
-        print(self.ComPort.out_waiting)
-        print(self.ComPort.get_settings())
-        print(self.ComPort.reset_output_buffer())
-        return 0
-
-    def ping(self):
-        self.ComPort.write(b'ping\r\n')
-        time.sleep(0.1)
-        # read_data = self.ComPort.read(100)
-        read_data = self.ComPort.readline()
-        len_data = len(read_data)
-        # print(read_data)
-        # print(len_data)
-        if len_data == 0:
-            return 1
-        else:
-            x = read_data.decode().find("ping OK")
-            if x == 0:
-                return 0
-            else:
-                return 2
-
-    def read_module(self, number_module):
-        # self.ComPort.write('Log t\r\n')
-        # print("Hello", self.index_print)
-        self.index_print += 1
 
 
 """def transfer_log(fname):
@@ -75,14 +35,20 @@ class UartTerminal(object):
 
 if __name__ == '__main__':
     __doc__ = """
-    Tool for receive and record from specified COM port in binary format
+    ....
     """
+
+    # log_file = LogFile();
+    # log_file.write_record();
+    # uartTerminal = UartTerminal()
+    # uartTerminal.read_module(11)
+    # sys.exit(3)
+
     uartTerminal = UartTerminal()
-    if uartTerminal.open() != 0:
+    if uartTerminal.open('COM3', 115200) != 0:
         sys.exit(2)
 
     while True:
-        # uartTerminal.read_module(1)
         result = uartTerminal.ping()
         if result != 0:
             print(result)
@@ -90,8 +56,44 @@ if __name__ == '__main__':
             continue
 
         while True:
-            time.sleep(0.5)
-            result = uartTerminal.ping()
-            print(result)
-            if result != 0:
+            result_mb = uartTerminal.ping()
+            print(result_mb)
+            if result_mb != 0:  # no connection with main board
                 break
+
+            time.sleep(1.0)
+            result_module = uartTerminal.read_module(9)
+            print(result_module)
+            if result_module[0] == 0:
+                log_file = LogFile()
+                log_file.write_record(result_module[1])
+
+            time.sleep(1.0)
+            result_module = uartTerminal.read_module(4)
+            print(result_module)
+            if result_module[0] == 0:
+                log_file = LogFile()
+                log_file.write_record(result_module[1])
+
+            time.sleep(1.0)
+            result_module = uartTerminal.read_module(12)
+            print(result_module)
+            if result_module[0] == 0:
+                log_file = LogFile()
+                log_file.write_record(result_module[1])
+
+            time.sleep(1.0)
+            result_module = uartTerminal.read_module(6)
+            print(result_module)
+            if result_module[0] == 0:
+                log_file = LogFile()
+                log_file.write_record(result_module[1])
+
+            """time.sleep(1.0)
+            result_module = uartTerminal.read_module(11)
+            print(result_module)
+            if result_module[0] == 0:
+                log_file = LogFile()
+                log_file.write_record(result_module[1])"""
+
+            time.sleep(60.0)
