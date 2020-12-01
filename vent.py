@@ -38,10 +38,12 @@ if __name__ == '__main__':
     ....
     """
 
-    # log_file = LogFile();
-    # log_file.write_record();
-    # uartTerminal = UartTerminal()
-    # uartTerminal.read_module(11)
+    # file_in = open('Archive/11-29-2020_1/LogTemperature_3.txt', 'r')
+    # file_out = open('Archive/11-29-2020/LogTemperature_3.txt', 'a')
+    # for x in file_in:
+    #    file_out.write(x)
+    # file_in.close()
+    # file_out.close()
     # sys.exit(3)
 
     uartTerminal = UartTerminal()

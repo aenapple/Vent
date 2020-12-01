@@ -34,23 +34,23 @@ if __name__ == '__main__':
 
     fig, ax = plt.subplots()
 
-    data = transform_data('LogTemperature_4.txt')  # room-sensor
+    data = transform_data('Archive/11-30-2020/LogTemperature_4.txt')  # room-sensor
     ax.plot(data[1], data[0], label="l-room-sensor")
 
-    data = transform_data('LogTemperature_B.txt')  # vent-sensor
-    ax.plot(data[1], data[0], label="l-vent1-sensor")
+    data = transform_data('Archive/11-30-2020/LogTemperature_B.txt')  # vent-sensor
+    ax.plot(data[1], data[0], label="b-vent1-sensor")
 
-    data = transform_data('LogTemperature_C.txt')  # vent-sensor
-    ax.plot(data[1], data[0], label="l-vent2-sensor")
+    data = transform_data('Archive/11-30-2020/LogTemperature_C.txt')  # vent-sensor
+    ax.plot(data[1], data[0], label="b-vent2-sensor")
 
-    data = transform_data('LogTemperature_3.txt')  # room-sensor
+    data = transform_data('Archive/11-30-2020/LogTemperature_3.txt')  # room-sensor
     ax.plot(data[1], data[0], label="b-room-sensor")
 
-    data = transform_data('LogTemperature_6.txt')  # room-sensor
-    ax.plot(data[1], data[0], label="b-vent1-sensor(isolated)")
+    data = transform_data('Archive/11-30-2020/LogTemperature_6.txt')  # room-sensor
+    ax.plot(data[1], data[0], label="l-vent1-sensor(isolated)")
 
-    data = transform_data('LogTemperature_9.txt')  # vent-sensor
-    ax.plot(data[1], data[0], label="b-vent2-sensor")
+    data = transform_data('Archive/11-30-2020/LogTemperature_9.txt')  # vent-sensor
+    ax.plot(data[1], data[0], label="l-vent2-sensor")
 
     # ax.set_xlim(0, 5)
     # ax.set_ylim(0, 10)
