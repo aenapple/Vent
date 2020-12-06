@@ -1,0 +1,6 @@
+liv-room: #11,12 - vent, #4 - sensor
+Bed room: #6(isolated),9 - vent, #3 - sensor
+
+From 12/1/2020
+liv-room: #6(isolated),9 - vent, #4 - sensor
+Bed room: #11,12 - vent, #3 - sensor
