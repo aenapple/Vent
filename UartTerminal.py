@@ -53,20 +53,19 @@ class UartTerminal(object):
         if len_data == 0:  #
             return 1, 'No main board'
 
-        try:
-            x = read_line1.decode().find("tx OK")
-            if x == 0:
-                read_line2 = self.ComPort.readline()
-                # return_str = read_line2.decode()
-
+        x = read_line1.decode().find("tx OK")
+        if x >= 0:
+            read_line2 = self.ComPort.readline()
+            # r = read_line2.decode().find("CRC_ERR")
+            try:
                 len_data = len(read_line2)
                 if len_data == 0:
                     return 1, 'No module - ' + str(number_module)
                 else:
                     return 0, read_line2.decode()
-            else:
+            except:
+                print("Decode Exception:")
                 return 2, 'ERROR'
-        except serial.SerialException:
-            print("Serial Exception:")
-            print(sys.exc_info())
+        else:
             return 2, 'ERROR'
+
