@@ -63,7 +63,9 @@ if __name__ == '__main__':
             if result_mb != 0:  # no connection with main board
                 break
 
-            for x in range(1, 13):
+            uartTerminal.read_all_module()
+            time.sleep(1.0)
+            """for x in range(1, 13):
                 if (x != 3) and (x != 4) and (x != 6) and (x != 9) and (x != 11) and (x != 12):
                     continue
 
@@ -74,4 +76,4 @@ if __name__ == '__main__':
                     log_file = LogFile()
                     log_file.write_record(result_module[1])
 
-            time.sleep(60.0)
+            time.sleep(60.0)"""

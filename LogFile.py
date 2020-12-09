@@ -13,8 +13,10 @@ class LogFile(object):
         datetime_object = datetime.datetime.now()
         print(datetime_object)
         today = datetime_object.strftime("%m/%d/%Y-%H:%M:%S.%f-")
-        file_name = 'LogTemperature_' + record[0] + '.txt'
-        full_record = today + record.replace(record[0] + ',1,temp OK ,', '')
+        file_name = 'LogTemperature.txt'
+        str_temp = record.decode()
+        # full_record = today + record.replace('temp from '.encode(), '')
+        full_record = today + str_temp.replace('temp from ', '')
         print(full_record)
 
         file_out = open(file_name, 'a')
