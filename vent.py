@@ -64,7 +64,7 @@ if __name__ == '__main__':
                 break
 
             uartTerminal.read_all_module()
-            time.sleep(1.0)
+            time.sleep(60.0)
             """for x in range(1, 13):
                 if (x != 3) and (x != 4) and (x != 6) and (x != 9) and (x != 11) and (x != 12):
                     continue

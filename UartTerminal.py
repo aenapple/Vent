@@ -34,10 +34,13 @@ class UartTerminal(object):
         if len_data == 0:
             return 1
         else:
-            x = read_data.decode().find("ping OK")
-            if x == 0:
-                return 0
-            else:
+            try:
+                x = read_data.decode().find("ping OK")
+                if x == 0:
+                    return 0
+                else:
+                    return 2
+            except:
                 return 2
 
     def read_module(self, number_module):
