@@ -4,3 +4,117 @@ Bed room: #6(isolated),9 - vent, #3 - sensor
 From 12/1/2020
 liv-room: #6(isolated),9 - vent, #4 - sensor
 Bed room: #11,12 - vent, #3 - sensor
+
+From 12/9/2020
+m_liveroom-t3 - #2
+Cabinet       - #3
+d_bedroom-t1  - #4
+d_bedroom-t2  - #5
+m_liveroom-t1 - #6
+d_liveroom-t  - #7
+???           - #8
+m_liveroom-t2 - #9
+m_bathroom-t  - #10
+m_bedroom-t1  - #11
+m_bedroom-t2  - #12
+???           - #13
+d_bathroom-t  - #14
+???           - #15
+
+
+osSE5Gu0Vi8WRq93UvkYZCjaOKeNJfTyH6tzDQbxFm4M1ndXIPh27wBA rLclpg| 3 35 27 62 51 27 46 57 26 10 46 63 57 45 15 43 53
+Stephen King 1947
+int main() {
+    std::string line = "osSE5Gu0Vi8WRq93UvkYZCjaOKeNJfTyH6tzDQbxFm4M1ndXIPh27wBA rLclpg| 3 35 27 62 51 27 46 57 26 10 46 63 57 45 15 43 53";
+    std::string str_index, str2;
+    int i;
+
+    int pos = line.find('|');
+    str_index = line.substr(pos+1, line.find('\n')) ;
+    while (true)
+    {
+        pos = str_index.find(' ');
+        if(pos == 0)
+        {
+            str_index.erase(0, 1);
+        }
+
+        pos = str_index.find(' ');
+        if(pos < 0)
+        {
+            i = std::stoi(str_index) - 1;
+            std::cout << line.substr(i, 1) << std::endl;
+            break;
+        }
+
+        str2 = str_index.substr(0, pos);
+        i = std::stoi(str_index.substr(0, pos)) - 1;
+        std::cout << line.substr(i, 1);
+
+        str_index.erase(0, pos);
+    }
+
+
+    return 0;
+}
+
+1 2 3 4 -> 4 2
+10 -2 3 4 -> 4 -2
+#include <iostream>
+#include <list>
+
+int main() {
+    std::list<std::string> my_list;
+    std::list<std::string>::iterator it;
+    std::string line = "1 2 3 4 10 -2 5 6 7 8";
+    std::string str2;
+    int i;
+    int pos;
+
+    i = 0;
+    while (true)
+    {
+        pos = line.find(' ');
+        if(pos == 0)
+        {
+            line.erase(0, 1);
+        }
+
+        pos = line.find(' ');
+        if(pos < 0)
+        {
+            if(i % 2 != 0)
+            {
+                my_list.insert(my_list.begin(), line);
+            }
+
+            break;
+        }
+
+        str2 = line.substr(0, pos);
+        if(i % 2 != 0)
+        {
+            my_list.insert(my_list.begin(), str2);
+        }
+
+        line.erase(0, pos);
+        i++;
+
+    }
+
+    for (std::string& x: my_list) std::cout << " " << x;
+
+    //for (it = my_list.begin(); it != my_list.end(); ++it)
+    //    std::cout << ' ' << *it;
+
+    std::cout << std::endl;
+    // std::cout << my_list.size() << std::endl;
+
+    return 0;
+}
+
+
+
+
+
+

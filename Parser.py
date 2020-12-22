@@ -66,24 +66,23 @@ if __name__ == '__main__':
     fig, ax = plt.subplots()
 
     str_label = [
-        "m-liveroom-t1", # 2
-        "m-liveroom-t2", # 3
-        "m-liveroom-t3", # 4
-        "d-liveroom-t1", # 5
-        "d_bedroom-t1",  # 6
-        "d_bedroom-t2",  # 7
-        "m_bedroom-t1",  # 8
-        "m_bedroom-t2",  # 9
-        "d-bathroom-t",  # 10
-        "m-bathroom-t",  # 11
-        "cabinet-t",     # 12
-        "???",  # 13
-        "???",  # 14
-        "???",  # 15
-        "???",  # 16
+        "m-liveroom-t3", # 2
+        "cabinet-t",     # 3
+        "d_bedroom-t1",  # 4
+        "d_bedroom-t2",  # 5
+        "m-liveroom-t1", # 6
+        "d-liveroom-t",  # 7
+        "???",           # 8
+        "m-liveroom-t2", # 9
+        "m-bathroom-t",  # 10
+        "m_bedroom-t1",  # 11
+        "m_bedroom-t2",  # 12
+        "???",           # 13
+        "d-bathroom-t"   # 14
     ]
 
-    for i in range(2, 16):
+
+    for i in range(2, 15):
         data = transform_data(i)  # room-sensor
         ax.plot(data[1], data[0], label=str_label[i-2])
         print(str_label[i-2])
